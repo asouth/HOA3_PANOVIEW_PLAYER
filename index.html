@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>My 3D Webpage</title>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.122.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.122.0/examples/js/controls/OrbitControls.min.js"></script>
+  <script src="node_modules/ambisonics/ambisonics.umd.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+    }
+    #container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+    #controls {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 1;
+    }
+    #custom-upload-container {
+      position: absolute;
+      top: 10px;
+      left: -300px;
+      z-index: 1;
+      transition: left 0.5s ease;
+      width: 300px;
+      background-color: white;
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    #custom-upload-container.visible {
+      left: 10px;
+    }
+    #custom-upload-toggle {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 1;
+      cursor: pointer;
+    }
+    #gain-control-container {
+        background-color: rgba(255, 255, 255, 0.5); /* white with 50% opacity */
+        padding: 10px;
+        border-radius: 5px;
+    }
+    #company-logo {
+      position: absolute;
+      scale: 0.5;
+      bottom: 10px;
+      right: 10px;
+    }
+
+    #client-logo {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+    }
+  </style>  
+</head>
+<body>
+  <div id="container">
+    <div id="controls">
+      <select class="form-control mb-2" id="demo-selector">
+        <option value="" disabled selected>Select a demo</option>
+        <option value="1">Demo 1</option>
+        <option value="2">Demo 2</option>
+        <option value="3">Demo 3</option>
+        <option value="4">Demo 4</option>
+        <option value="5">Demo 5</option>
+      </select>
+      <button type="button" class="btn btn-primary mb-2" id="play-button">Play</button>
+      <button type="button" class="btn btn-danger mb-2" id="stop-button">Stop</button>
+      <div id="gain-control-container">
+        <label for="gain-control">Gain:</label>
+        <input type="range" id="gain-control" min="0" max="2" step="0.01" value="1">
+      </div>      
+    </div>
+
+    <div id="custom-upload-toggle">Custom upload &#9656;</div>
+    <div id="custom-upload-container">
+      <h4>Custom Upload</h4>
+      <h5>Choose a panoramic photo</h5>
+      <div class="custom-file mb-3">
+        <input type="file" class="custom-file-input" id="pano-file" accept=".jpg, .jpeg, .png">
+        <label class="custom-file-label" for="pano-file">Choose file</label>
+      </div>
+      <h5>Choose an audio file</h5>
+      <div class="custom-file mb-3">
+        <input type="file" class="custom-file-input" id="audio-file" accept=".mp3, .wav">
+        <label class="custom-file-label" for="audio-file">Choose file</label>
+      </div>
+      <button type="button" class="btn btn-secondary" id="custom-upload-button">Upload</button>
+    </div>
+  
+    <img src="aecom.svg" alt="Company Logo" id="company-logo">
+    <img src="client.png" alt="Client Logo" id="client-logo">
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
